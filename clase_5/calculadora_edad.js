@@ -7,7 +7,7 @@ Instalación módulo moment: npm install moment --save
 
 const moment = require('moment');
 
-const NACIMIENTO = '2022-03-30';
+const NACIMIENTO = '2022-04-04';
 
 // isValid retorna true o false, verifica si el formato del string de fecha utilizado es válido
 const fechaValida = moment(NACIMIENTO, true).isValid();
