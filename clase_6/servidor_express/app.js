@@ -7,6 +7,8 @@ const express = require('express');
 const PUERTO = 8080;
 
 const server = express();
+// Mantenemos siempre estas configuraciones para una lectura correcta de JSON
+server.use(express.json);
 server.use(express.urlencoded({ extended: true }));
 
 // Solicitud get con retorno txt
