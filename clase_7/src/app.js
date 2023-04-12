@@ -8,7 +8,7 @@ const express = require('express');
 const PUERTO = 8080;
 // Renombramos el archivo a extensión .dat para evitar el problema de loop en nodemon,
 // por supuesto el contenido puede igualmente parsearse como JSON y operarse sin problemas.
-const ARCHIVO_USUARIOS = './usuarios.dat';
+const ARCHIVO_USUARIOS = '../usuarios.dat';
 const CAMPOS_REQUERIDOS = [ 'nombre', 'apellido', 'edad', 'correo' ];
 
 // Mantenemos siempre esta configuración para una lectura correcta de datos complejos desde la URL
