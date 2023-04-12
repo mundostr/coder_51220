@@ -13,6 +13,7 @@ server.use(express.urlencoded({ extended: true }));
 
 // Solicitud get con retorno txt
 server.get('/saludo', (solicitud, respuesta) => {
+    respuesta.sendStatus(200);
     respuesta.send('Nuestro primer server con Express!');
 });
 
@@ -28,13 +29,18 @@ server.get('/usuario', (req, res) => {
 
 // Solicitud get con parámetro (req.params)
 // localhost:8080/bienvenida2/red
-server.get('/bienvenida2/:color', (req, res) => {
+server.get('/bienvenida2/:color/:color2', (req, res) => {
     res.send(`<h1 style="color: ${req.params.color};">Sean todos bienvenidos!</h1>`);
 });
 
 // Solicitud get con retorno de query (req.query)
 // localhost:8080/query?nombre=Carlos&apellido=Perren
-server.get('/query', (req, res) => {
+server.get('/products', (req, res) => {
+    if (req.query.control !== undefined) {
+        res.send({ type: req.query.type, msj: "ok" });
+    } else {
+        res.send({ type: null, msj: "error" })
+    }
     res.send(req.query);
 });
 
