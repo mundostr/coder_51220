@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Carga de usuarios</title>
+</head>
+<body>
+    <h1>Carga de usuarios</h1>
+    <!--
+        Este es un formulario básico, solo para probar la funcionalidad de la API
+        Muy importante utilizar enctype="multipart/form-data" y method="post"
+        para enviar la información de la manera correcta
+    -->
+    <form action="http://localhost:3000/api/users" enctype="multipart/form-data" method="post">
+        <label for="apellido">Apellido: </label>
+        <input type="text" name="apellido" id="apellido">
+        
+        <label for="nombre">Nombre: </label>
+        <input type="text" name="nombre" id="nombre">
+
+        <label for="saldo">Saldo: </label>
+        <input type="number" name="saldo" id="saldo">
+
+        <label for="saldo">Imagen: </label>
+        <input type="file" name="file" id="file">
+
+        <button type="submit">Enviar</button>
+    </form>
+</body>
+</html>
