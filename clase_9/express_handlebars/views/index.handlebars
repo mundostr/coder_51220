@@ -6,9 +6,17 @@
     </div>
 
     <div class="row">
-        <ul>
-            <li>{{nombre}}</li>
-            <li>{{apellido}}</li>
-        </ul>
+        <div class="card" style="width: 18rem;">
+            <img src="https://www.adobe.com/es/express/feature/image/media_16ad2258cac6171d66942b13b8cd4839f0b6be6f3.png?width=750&format=png&optimize=medium"
+                class="card-img-top">
+            <div class="card-body">
+                <h5 class="card-title">{{user.lastName}}, {{user.firstName}} ({{user.age}})</h5>
+                <p class="card-text">{{user.email}}</p>
+
+                {{#if isAdmin}}
+                <a href="#" class="btn btn-primary">{{user.phone}}</a>
+                {{/if}}
+            </div>
+        </div>
     </div>
 </div>
