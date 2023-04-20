@@ -1,0 +1,17 @@
+<div class="container-fluid">
+    <div class="row">
+        <header class="bg-success text-white p-3" style="height: 25vh;">
+            <h1><b>CODER - Sistema de usuarios</b></h1>
+        </header>
+    </div>
+
+    <div class="row">
+        <div class="col-12 m-3">
+            <ul>
+                {{#each users}}
+                    <li>{{this.lastName}}, {{this.firstName}} ({{this.userName}})</li>
+                {{/each}}
+            </ul>
+        </div>
+    </div>
+</div>
