@@ -14,4 +14,14 @@
             </ul>
         </div>
     </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.6.1/socket.io.js"></script>
+    <script>
+        const wsc = io('ws://localhost:8080');
+        wsc.emit('Cliente 01 intentando conectar');
+
+        wsc.on('confirm', (data) => {
+            console.log(data);
+        });
+    </script>
 </div>
