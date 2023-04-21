@@ -5,7 +5,7 @@ import { engine } from 'express-handlebars';
 import { Server } from 'socket.io';
 
 const PORT = 3000;
-const WS_PORT = 8080;
+const WS_PORT = 3050;
 
 // Servidor Express base
 const server = express();
@@ -14,7 +14,8 @@ const httpServer = server.listen(WS_PORT, () => {
 });
 const wss = new Server(httpServer, {
     cors: {
-        origin: "http://localhost:3000"
+        origin: "http://localhost:3000",
+        methods: ["GET", "POST"]
     }
 });
 
@@ -33,11 +34,19 @@ server.set('view engine', 'handlebars');
 server.set('views', './views');
 
 // Eventos socket.io
-wss.on('connection', (socket) => {
-    console.log('Nuevo cliente conectado');
-
-    socket.on('message', (data) => {
-        socket.emit('confirm', 'Mensaje del cliente recibido');
+wss.on('connection', (socket) => { // Escuchamos el evento connection por nuevas conexiones de clientes
+    console.log(`Cliente conectado (${socket.id})`);
+    
+    // Emitimos el evento server_confirm
+    socket.emit('server_confirm', 'Conexión del cliente recibida');
+    
+    socket.on("disconnect", (reason) => {
+        console.log(`Cliente desconectado (${socket.id}): ${reason}`);
+    });
+    
+    // Escuchamos por el evento evento_cl01 desde el cliente
+    socket.on('event_cl01', (data) => {
+        console.log(data);
     });
 });
 
