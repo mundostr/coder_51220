@@ -1,29 +1,29 @@
 import { Router } from "express";
-import Users from './users.js';
+import Products from './products.js';
 import { __dirname } from '../../utils.js';
 
 const router = Router();
-const manager = new Users(`${__dirname}/data/users.json`);
+const manager = new Products(`${__dirname}/data/products.json`);
 
-router.get('/users_index', async (req, res) => {
-    const users = await manager.getUsers();
-    res.render('index', {
-        users: users
+router.get('/products_index', async (req, res) => {
+    const products = await manager.getProducts();
+    res.render('index_products', {
+        products: products
     });
 });
 
-router.get('/users', async (req, res) => {
+router.get('/products', async (req, res) => {
     try {
-        const users = await manager.getUsers();
-        res.status(200).send({ status: 'OK', data: users });
+        const products = await manager.getProducts();
+        res.status(200).send({ status: 'OK', data: products });
     } catch (err) {
         res.status(500).send({ status: 'ERR', error: err });
     }
 });
 
-router.post('/users', async (req, res) => {
+router.post('/products', async (req, res) => {
     try {
-        await manager.addUser(req.body);
+        await manager.addProduct(req.body);
 
         if (manager.checkStatus() === 1) {
             res.status(200).send({ status: 'OK', msg: manager.showStatusMsg() });
@@ -35,10 +35,10 @@ router.post('/users', async (req, res) => {
     }
 });
 
-router.put('/users', async (req, res) => {
+router.put('/products', async (req, res) => {
     try {
         const { id, field, data } = req.body;
-        await manager.updateUser(id, field, data);
+        await manager.updateProduct(id, field, data);
     
         if (manager.checkStatus() === 1) {
             res.status(200).send({ status: 'OK', msg: manager.showStatusMsg() });
@@ -50,9 +50,9 @@ router.put('/users', async (req, res) => {
     }
 });
 
-router.delete('/users', async(req, res) => {
+router.delete('/products', async(req, res) => {
     try {
-        await manager.deleteUser(req.body.id);
+        await manager.deleteProduct(req.body.id);
     
         if (manager.checkStatus() === 1) {
             res.status(200).send({ status: 'OK', msg: manager.showStatusMsg() });
