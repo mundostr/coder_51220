@@ -3,7 +3,7 @@ import express from 'express';
 import mongoose from 'mongoose';
 import { engine } from 'express-handlebars';
 
-import router from './api/users/users.routes.js';
+import router from './api/products/products.routes.js';
 import { __dirname } from './utils.js';
 
 const PORT = parseInt(process.env.PORT) || 3000;

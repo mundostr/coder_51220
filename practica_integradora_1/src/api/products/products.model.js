@@ -1,5 +1,6 @@
 import mongoose from 'mongoose';
 
+mongoose.pluralize(null); // Importante! para no tener problemas con Mongoose
 const collection = 'products';
 
 const schema = new mongoose.Schema({
