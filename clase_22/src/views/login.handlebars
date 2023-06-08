@@ -1,0 +1,37 @@
+<style>
+    form {
+        background: #e1e1e1;
+        border-radius: 1em;
+    }
+</style>
+
+<div class="row justify-content-md-center">
+    <div class="col-md-4 col-xs-12 mt-4">
+        <h2 class="mb-4"><b>Identificación de usuario</b></h2>
+
+        <form class="p-4" action="/login" method="post">
+            <div class="form-group mb-4">
+                <label for="login_email">Email</label>
+                <input type="email" class="form-control" id="login_email" name="login_email" required="required">
+            </div>
+
+            <div class="form-group mb-4">
+                <label for="login_password">Clave</label>
+                <input type="password" class="form-control" id="login_password" name="login_password" required="required">
+            </div>
+
+            <button type="submit" class="btn btn-success"><i class="fas fa-sign-in-alt"></i> Ingresar</button>
+            
+            {{#if sessionInfo.errorMessage }}
+            <div class="alert alert-danger mt-4" role="alert">{{sessionInfo.errorMessage}}</div>
+            {{/if}}
+        </form>
+    </div>
+</div>
+
+<script>
+    // Estamos utilizando JS Vanilla, es decir, ningún framework
+    // Simplemente tomamos la referencia del elemento que nos interesa, utilizando el id
+    // indicado en el html, y aplicamos el método requerido (dar el foco en este caso)
+    document.getElementById('login_email').focus();
+</script>
