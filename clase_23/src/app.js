@@ -2,7 +2,9 @@ import express from 'express';
 import mongoose from 'mongoose';
 
 import { __dirname } from './utils.js';
-import mainRoutes from './api/main.routes.js';
+// import mainRoutes from './api/main.routes.js';
+// import petsRoutes from './api/pets.routes.js';
+import UsersRouter from './api/users.routes.js';
 
 const MONGOOSE_URL = 'mongodb://127.0.0.1:27017/coder51220';
 const SERVER_PORT = 3000;
@@ -13,7 +15,12 @@ app.use(express.urlencoded({ extended: true }));
 
 
 // Routes
-app.use('/', mainRoutes());
+// app.use('/', mainRoutes());
+// app.use('/api/pets', petsRoutes());
+// UsersRouter no es un paquete de rutas importadas, es una clase, entonces creamos una nueva instancia
+const usersRoutes = new UsersRouter();
+// y ahora sí, con el método getRouter obtenemos las rutas para usar en el middleware use()
+app.use('/api/users', usersRoutes.getRouter());
 
 
 // Server
