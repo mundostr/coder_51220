@@ -1,0 +1,19 @@
+<style>
+</style>
+
+<div class="row justify-content-md-center">
+    <div class="col-md-4 col-xs-12 mt-4">
+        <h2 class="mb-4"><b>USUARIOS</b></h2>
+
+        <div>
+            <ul>
+                {{#each users}}
+                    <li>{{ this.lastName }}, {{ this.firstName }} ({{this.userName}})</li>
+                {{/each}}
+            </ul>
+        </div>
+    </div>
+</div>
+
+<script>
+</script>
