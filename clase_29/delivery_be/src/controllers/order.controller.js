@@ -1,6 +1,7 @@
 import Order from '../services/order.dao.js';
 import Business from '../services/business.dao.js';
 import User from '../services/user.dao.js';
+import OrderDTO from '../services/order.dto.js';
 
 // Importamos la clase dao correspondiente (de MongoDB en este caso),
 // creamos las instancias e implementamos los métodos.
@@ -27,28 +28,19 @@ export const getOrderById = async (req, res) => {
 
 export const createOrder = async (req, res) => {
     const { user, business, products } = req.body;
+    
     const resultUser = await userService.getUserById(user);
     const resultBusiness = await businessService.getBusinessById(business);
-
     const actualOrder = resultBusiness.products.filter(product => products.includes(product.id));
-    const totalPrice = actualOrder.reduce((acc, prev) => {
-        acc += prev.price
-        return acc;
-    }, 0);
-    const orderNumber = Date.now() + Math.floor(Math.random() * 10000 + 1);
 
-    const order = {
-        number: orderNumber,
-        business: business,
-        user: user,
-        products: actualOrder.map(product => product.id),
-        totalPrice: totalPrice,
-        completed: false
-    };
-
+    // Incorporamos el uso del patrón DTO para garantizar el formato del objeto antes
+    // de enviarlo al DAO (createOrder)
+    const order = new OrderDTO({business, user, actualOrder});
     const orderResult = await orderService.createOrder(order);
+    
     resultUser.orders.push(orderResult._id);
     await userService.updateUser(user, resultUser);
+    
     res.status(200).send({ status: 'OK', result: orderResult });
 }
 
