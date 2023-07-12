@@ -18,6 +18,9 @@
  * TODAS las pruebas deben seguir PASANDO.
  * 
  * Repetimos la secuencia hasta que estemos conformes con la implementación de la función.
+ * 
+ * Más sobre TDD:
+ * https://www.freecodecamp.org/news/test-driven-development-tutorial-how-to-test-javascript-and-reactjs-app/
  */
 
 const sumar = (...params) => {

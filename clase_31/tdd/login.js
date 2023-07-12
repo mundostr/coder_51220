@@ -8,6 +8,9 @@
  * T3: Contraseña incorrecta si no coincide el password
  * T4: Credenciales incorrectas si no coincide el user
  * T5: Logueado si coinciden user y password
+ * 
+ * Más sobre TDD:
+ * https://www.freecodecamp.org/news/test-driven-development-tutorial-how-to-test-javascript-and-reactjs-app/
  */
 
 const login = (user, pass) => {
