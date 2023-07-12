@@ -6,6 +6,9 @@
  * 
  * Para una lista completa de objetos disponibles, visitar:
  * https://fakerjs.dev/api/
+ * 
+ * Importante!: recordar instalar el módulo Faker como dependencia de desarrollo, ya que normalmente
+ * lo usaremos solo en esa etapa (npm i @faker-js/faker --save-dev)
  */
 
 import { Faker, en } from '@faker-js/faker';
