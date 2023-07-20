@@ -12,9 +12,14 @@ import * as url from 'url';
 import express from 'express';
 import twilio from 'twilio';
 import nodemailer from 'nodemailer';
+import fetch from 'node-fetch';
 
 
 const __dirname = url.fileURLToPath(new URL('.', import.meta.url));
+
+const TELEGRAM_API = 'https://api.telegram.org';
+const BOT_TOKEN = 'TOKEN_DEL_BOT';
+const CHAT_ID = 'ID_DE_LA_CONVERSACION';
 
 
 const app = express();
@@ -52,7 +57,7 @@ app.get('/mail', async (req, res) => {
             { filename: 'sample.png', path: `${__dirname}/static/sample.pdf`, cid: 'sample' }
         ]
     })
-    
+
     res.status(200).send({ status: 'OK', result: result });
 })
 
@@ -77,11 +82,33 @@ app.get('/sms', async (req, res) => {
     res.status(200).send({ status: 'OK', result: result });
 })
 
+app.get('/telegram', async (req, res) => {
+    if (req.query.message == null) req.query.message = 'Mensaje de prueba';
+
+    const url = `${TELEGRAM_API}/bot${BOT_TOKEN}/sendMessage`;
+    const data = { chat_id: CHAT_ID, text: req.query.message };
+
+    try {
+        const response = await fetch(url, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(data),
+        });
+
+        const result = await response.json();
+        res.status(200).send({ status: 'OK', result: result });
+    } catch (err) {
+        res.status(500).send({ status: 'ERR', result: err.message });
+    }
+})
+
 
 try {
     app.listen(3000, () => {
         console.log(`Servidor iniciado en puerto 3000`);
     });
-} catch(err) {
+} catch (err) {
     console.log(`No se puede iniciar el servidor (${err.message})`);
 }
