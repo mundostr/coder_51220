@@ -17,10 +17,6 @@ import fetch from 'node-fetch';
 
 const __dirname = url.fileURLToPath(new URL('.', import.meta.url));
 
-const TELEGRAM_API = 'https://api.telegram.org';
-const BOT_TOKEN = 'TOKEN_DEL_BOT';
-const CHAT_ID = 'ID_DE_LA_CONVERSACION';
-
 
 const app = express();
 app.use(express.json());
@@ -64,7 +60,7 @@ app.get('/mail', async (req, res) => {
 
 // Notificaciones vía SMS
 // Paso 1: inicializar cliente Twilio con SID y TOKEN
-const client = twilio('SID_VALIDO', 'TOKEN_VALIDO') // generados al dar de alta cuenta
+// const client = twilio('SID_VALIDO', 'TOKEN_VALIDO') // generados al dar de alta cuenta
 
 // Paso 2: al solicitar el endpoint GET /sms, se envía a Twilio un mensaje para su reenvío como SMS
 app.get('/sms', async (req, res) => {
@@ -73,14 +69,29 @@ app.get('/sms', async (req, res) => {
     const nombre = req.query.nombre;
     const producto = req.query.producto;
 
-    const result = await client.messages.create({
+    /* const result = await client.messages.create({
         body: `Gracias ${nombre}, tu solicitud del producto ${producto} ha sido aprobada`,
         from: 'nro_de_origen_en_formato_valido',
         to: 'nro_de_destino_en_formato_valido'
-    })
+    }) */
+    const result = {}
 
     res.status(200).send({ status: 'OK', result: result });
 })
+
+
+// Variante con TELEGRAM
+const TELEGRAM_API = 'https://api.telegram.org';
+// Este token se obtiene al generar un nuevo bot desde @BotFather en Telegram
+const BOT_TOKEN = 'COLOCAR_TOKEN';
+// El chat ID identifica al usuario o grupo al cual el bot envía
+// Para conocer el id de un grupo, agregar primero al bot, y luego visitar
+// https://api.telegram.org/botBOT_TOKEN/getUpdates
+// debe figurar la palabra bot y BOT_TOKEN reemplazarse por el token indicado por @BotFather
+// al generar el bot (de corrido, sin espacios entre bot y el token)
+// Para conocer el ID de un usuario, el usuario puede buscar el bot @userinfobot y
+// enviarle un mensaje /start (iniciar).
+const CHAT_ID = 'ID_DEL_CHAT_AL_CUAL_ENVIAR';
 
 app.get('/telegram', async (req, res) => {
     if (req.query.message == null) req.query.message = 'Mensaje de prueba';
