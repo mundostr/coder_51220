@@ -36,7 +36,7 @@ export const getProducts = async(req, res) => {
 export const getLargeProcess = async(req, res) => {
     try {
         // Separamos la rutina compleja para crear un proceso hijo (child process).
-        const child = fork('src/complex.js');
+        const child = fork('src/utils/complex.js');
         // start es un mensaje que enviamos al proceso hijo, para indicarle que comience
         child.send('start');
         child.on('message', (result) => {
