@@ -9,7 +9,8 @@
 
     * Estando en el mismo directorio raíz, creamos la imagen mediante: docker build -t nombre_imagen . (observar el espacio y punto al final)
 
-    * Contando con la imagen, podemos generar las instancias (contenedores) que necesitemos. Para ello ejecutamos: docker run -d -p puerto_interno:puerto_externo --name nombre_container nombre_imagen.
+    * Contando con la imagen (molde), podemos generar las instancias (contenedores) que necesitemos. Para ello ejecutamos: docker run -d -p puerto_interno:puerto_externo --name nombre_container nombre_imagen.
 
     * Ejemplo: docker run -d -p 3000:3000 --name artillery_container_1 docker_coderhouse
     
+    * Atención!: para evitar problemas de librerías, en el caso de imágenes de NodeJS, agregar en el raíz del proyecto un archivo .dockerignore (con punto al comienzo), y dentro el texto node_modules, de esta manera se obligará a que la imagen reelabore el node_modules.
