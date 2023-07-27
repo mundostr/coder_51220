@@ -31,8 +31,7 @@ if (cluster.isPrimary) {
 
     const app = express();
     const PORT = process.env.PORT || 3000;
-    // Conectar a una bbdd remota para testear
-    // const connection = mongoose.connect(`COLOCAR_URL_MONGO_ATLAS`)
+    const MONGOOSE_URL = process.env.MONGOOSE_URL;
     
     app.use(express.json());
     
@@ -81,5 +80,13 @@ if (cluster.isPrimary) {
         res.send({first_name,last_name,email,password})
     })
     
-    app.listen(PORT, () => console.log(`Listening on PORT ${PORT} (PID ${process.pid})`))
+    try {
+        // mongoose.connect(MONGOOSE_URL);
+
+        app.listen(PORT, () => {
+            console.log(`Instancia de servidor iniciada en puerto ${PORT} (PID ${process.pid})`);
+        });
+    } catch(err) {
+        console.log(`No se puede iniciar la instancia (${err.message})`);
+    }
 }

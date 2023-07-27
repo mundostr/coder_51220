@@ -1,0 +1,37 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: artillery-deploy
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: artillery
+  template:
+    metadata:
+      labels:
+        app: artillery
+    spec:
+      containers:
+        - name: artillery
+          image: mundostr/coderhouse_51220:1.0.0
+          ports:
+            - containerPort: 3000
+          env:
+            - name: MONGOOSE_URL
+              value: mongodb://127.0.0.1:27017/coder51220
+          imagePullPolicy: Always
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: artillery-service
+spec:
+  selector:
+    app: artillery
+  ports:
+    - protocol: TCP
+      port: 3000
+      targetPort: 3000
+  type: LoadBalancer
