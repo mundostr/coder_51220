@@ -48,3 +48,9 @@ Recordar que minikube es solo una implementación para Kubernetes local. Para de
 
 - Bajar a cero las réplicas, el cluster queda vacío:kubectl scale deployment <nombre_del_deploy> --replicas=0
 - Borrar el deployment: kubectl delete deployment <nombre_del_deploy>
+
+Ejemplo de servicio en la nube:
+- https://www.linode.com/docs/guides/deploy-container-image-to-kubernetes/
+
+Más sobre Kubernetes:
+- https://www.youtube.com/watch?v=s_o8dwzRlu4
