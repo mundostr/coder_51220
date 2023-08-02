@@ -1,0 +1,38 @@
+<style>
+    form {
+        background: #e1e1e1;
+        border-radius: 1em;
+    }
+</style>
+
+<div class="row justify-content-md-center">
+    <div class="col-md-4 col-xs-12 mt-4">
+        <h2 class="mb-4"><b>Identificación de usuario</b></h2>
+
+        <form class="p-4" action="login" method="post">
+            <div class="form-group mb-4">
+                <label for="login_email">Email</label>
+                <input type="email" class="form-control" id="email" name="email" maxlength="36" required="required">
+            </div>
+
+            <div class="form-group mb-4">
+                <label for="login_password">Clave (max 12 cars)</label>
+                <input type="password" class="form-control" id="pass" name="pass" maxlength="12" required="required">
+            </div>
+
+            {{!-- <div class="form-group mb-4">
+                <label class="form-check-label" for="exampleCheck1"><a href="http://localhost:3000/register">Registrar nuevo usuario</a></label>
+            </div> --}}
+            
+            <button type="submit" class="btn btn-success"><i class="fas fa-sign-in-alt"></i> Ingresar</button>
+            
+            {{!-- {{#if sessionInfo.errorMessage }}
+            <div class="alert alert-danger mt-4" role="alert">{{sessionInfo.errorMessage}}</div>
+            {{/if}} --}}
+        </form>
+    </div>
+</div>
+
+<script>
+    document.getElementById('email').focus();
+</script>
