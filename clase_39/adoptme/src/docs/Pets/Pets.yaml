@@ -1,0 +1,54 @@
+paths:
+  /api/pets:
+    get:
+      summary: Retorna la lista completa de mascotas
+      tags:
+        - Pets
+      responses:
+        "200":
+          description: 'OK'
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Pet'
+        "500":
+          description: 'ERROR'
+
+components:
+  schemas:
+    Pet:
+      type: object
+      properties:
+        _id:
+          type: object
+          description: Mongoose ObjectID
+        name:
+          type: string
+        specie:
+          type: string
+        birthdate:
+          type: string
+          format: date
+        adopted:
+          type: boolean
+        owner:
+          type: object
+          description: Mongoose ObjectID Ref Users
+        image:
+          type: string
+
+  requestBodies:
+    updateUser:
+      type: object
+      properties:
+        first_name:
+          type: string
+        last_name:
+          type: string
+        email:
+          type: string
+        password:
+          type: string
+          description: Clave TEXTO PLANO

@@ -1,0 +1,10 @@
+/**
+ * This function allocates ordes by date
+ *
+ * @param {Array} salesOrders - Array of sales received.
+ * @param {Array} purchaseOrders - Array of purchased made.
+ * @returns {Array} allocatedOrders - Array of allocated orders.
+ * @throws {Error} If one of the parameters is not an array.
+ * @example
+ * //
+ */
