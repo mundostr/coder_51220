@@ -17,9 +17,11 @@ export class UsersController {
   // Vemos que los elementos habituales de la request Express, también se extraen utilizando decoradores
   // @Param (req.params), @Body (req.body), @Query (req.query)
   // En este caso el formato de url sería http://localhost:puerto/users?limit=10
+  
+  // MUY IMPORTANTE!: recordar activar solicitudes asíncronas para procesar correctamente
   @Get()
-  findAll(@Query('limit') limit: number) {
-    const users = this.usersService.findAll(limit);
+  async findAll(@Query('offset') offset: number, @Query('limit') limit: number) {
+    const users = await this.usersService.findAll(offset, limit);
     return { status: 'OK', data: users };
   }
 
@@ -35,7 +37,6 @@ export class UsersController {
   // Activamos el uso de la clase DTO para creación (CreateUserDto), que por ahora continúa vacía
   // El objeto createUserDto recibirá el contenido del req.body
   create(@Body() createUserDto: CreateUserDto) {
-    console.log(createUserDto);
     return this.usersService.create(createUserDto);
   }
 
