@@ -6,6 +6,7 @@
 import User from '../services/user.dao.js';
 import UserDTO from '../services/user.dto.js';
 import errorsDict from '../utils/errors.dict.js';
+import { validationResult } from 'express-validator';
 
 const userService = new User();
 
@@ -32,21 +33,22 @@ export const getUserById = async (req, res) => {
 }
 
 export const saveUser = async (req, res) => {
-    try {
-        // Notar el uso del objeto DTO para normalizar los datos del usuario
-        // antes de pasarlos al método del servicio.
-        const user = new UserDTO(req.body);
-        const userFound = await userService.getUserByEmail(user.email);
-        // userFound indica si el mail ya se encuentra registrado o no en la colección
-        if (userFound) return res.status(errorsDict.ALREADY_REGISTERED.code).send({ status: 'ERR', result: errorsDict.ALREADY_REGISTERED.msg })
+    // Esto viene de la validación de campos hecha en la ruta, si todo va ok, continuamos
+    if (validationResult(req).isEmpty()) {
+        try {
+            // Notar el uso del objeto DTO para normalizar los datos del usuario
+            // antes de pasarlos al método del servicio.
+            const user = new UserDTO(req.body);
+            const userFound = await userService.getUserByEmail(user.email);
+            // userFound indica si el mail ya se encuentra registrado o no en la colección
+            if (userFound) return res.status(errorsDict.ALREADY_REGISTERED.code).send({ status: 'ERR', result: errorsDict.ALREADY_REGISTERED.msg })
 
-        if (Object.keys(user).length > 0) {
             const result = await userService.saveUser(user);
             res.status(errorsDict.ALL_OK.code).send({ status: 'OK', result: result });
-        } else {
-            res.status(errorsDict.INCOMPLETE_DATA.code).send({ status: 'ERR', result: errorsDict.INCOMPLETE_DATA.msg });
+        } catch (err) {
+            res.status(errorsDict.INTERNAL.code).send({ status: 'ERROR', result: err.message });
         }
-    } catch (err) {
-        res.status(errorsDict.INTERNAL.code).send({ status: 'ERROR', result: err.message });
+    } else {
+        res.status(errorsDict.INCOMPLETE_DATA.code).send({ status: 'ERR', data: validationResult(req).array() })
     }
 }

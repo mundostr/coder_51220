@@ -7,7 +7,7 @@ import mongoose from 'mongoose';
 
 mongoose.pluralize(null);
 
-const collection = 'users_delivery';
+const collection = 'users_integradora3';
 
 const schema = new mongoose.Schema({
     autoId: String,
@@ -15,7 +15,7 @@ const schema = new mongoose.Schema({
     email: String,
     pass: String,
     role: { type: String, enum: ['admin', 'user'], default: 'user' },
-    orders: [{ type: mongoose.SchemaTypes.ObjectId, ref: 'orders_delivery' }]
+    orders: [{ type: mongoose.SchemaTypes.ObjectId, ref: 'orders_integradora3' }]
 });
 
 const userModel = mongoose.model(collection, schema);

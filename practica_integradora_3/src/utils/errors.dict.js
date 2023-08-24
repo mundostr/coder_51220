@@ -12,6 +12,7 @@ const errorsDict = {
     ALREADY_REGISTERED: { code: 400, msg: 'Ya se encuentra registrado' },
     UNAUTHORIZED: { code: 401, msg: 'No autenticado' },
     FORBIDDEN: { code: 403, msg: 'No autorizado' },
+    UNPROCESSABLE: { code: 422, msg: 'No se puede procesar la acción por datos no válidos' }
 }
 
 export default errorsDict
