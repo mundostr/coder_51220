@@ -9,7 +9,7 @@ const errorsDict = {
     DATABASE_ERROR: { code: 500, msg: 'No se puede conectar a la base de datos' },
     INTERNAL: { code: 500, msg: 'Error interno de ejecución del servidor' },
     NO_CONTENT: { code: 500, msg: 'No se pudo recuperar el contenido' },
-    ALREADY_REGISTERED: { code: 400, msg: 'Ya se encuentra registrado' },
+    ALREADY_REGISTERED: { code: 400, msg: 'El valor indicado ya se encuentra registrado' },
     UNAUTHORIZED: { code: 401, msg: 'No autenticado' },
     FORBIDDEN: { code: 403, msg: 'No autorizado' },
     UNPROCESSABLE: { code: 422, msg: 'No se puede procesar la acción por datos no válidos' }

@@ -43,7 +43,10 @@ export const saveUser = async (req, res) => {
             // userFound indica si el mail ya se encuentra registrado o no en la colección
             if (userFound) return res.status(errorsDict.ALREADY_REGISTERED.code).send({ status: 'ERR', result: errorsDict.ALREADY_REGISTERED.msg })
 
+            if (req.files['avatar']) user.avatar = req.files['avatar'].name
+
             const result = await userService.saveUser(user);
+            
             res.status(errorsDict.ALL_OK.code).send({ status: 'OK', result: result });
         } catch (err) {
             res.status(errorsDict.INTERNAL.code).send({ status: 'ERROR', result: err.message });

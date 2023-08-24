@@ -21,7 +21,9 @@ const config = {
     MYSQL_USER: process.env.MYSQL_USER,
     MYSQL_PASS: process.env.MYSQL_PASS,
     SECRET: process.env.SECRET,
-    ALLOWED_ORIGINS: cors_origins.includes(',') ? cors_origins.split(',').map(item => item.trim()) : cors_origins
+    PERSISTENCE: process.env.PERSISTENCE,
+    ALLOWED_ORIGINS: cors_origins.includes(',') ? cors_origins.split(',').map(item => item.trim()) : cors_origins,
+    UPLOAD_DIR: process.env.UPLOAD_DIR
 }
 
 export default config;

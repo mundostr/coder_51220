@@ -8,17 +8,20 @@ import passport from './auth/passport.strategies.js';
 import { __dirname } from './utils.js';
 import CustomError from './services/customerror.class.js';
 import errorsDict from './utils/errors.dict.js';
+import fileUpload from 'express-fileupload';
 
 
 const app = express();
+
 app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
+app.use(fileUpload({ useTempFiles : true, tempFileDir : '/temp' }))
 app.use(cors({
     // revisar config.js, tomamos los orígenes permitidos desde variables de entorno
     origin: config.ALLOWED_ORIGINS,
-    methods: 'GET,PUT,POST',
-    allowedHeaders: 'Content-Type,Authorization'
+    methods: 'GET,PUT,POST,DELETE',
+    // allowedHeaders: 'Content-Type,Authorization'
 }));
-app.use(express.urlencoded({ extended: true }));
 
 // Habilitamos sesiones y passport, para manejar la autenticación de usuarios
 app.use(session({ secret: config.SECRET, resave: true, saveUninitialized: true }) );

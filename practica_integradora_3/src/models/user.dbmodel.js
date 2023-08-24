@@ -14,6 +14,7 @@ const schema = new mongoose.Schema({
     name: String,
     email: String,
     pass: String,
+    avatar: String,
     role: { type: String, enum: ['admin', 'user'], default: 'user' },
     orders: [{ type: mongoose.SchemaTypes.ObjectId, ref: 'orders_integradora3' }]
 });
