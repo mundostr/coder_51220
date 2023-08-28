@@ -1,0 +1,165 @@
+{
+    "openapi": "3.0.0",
+    
+    "info": {
+        "title": "Práctica Integradora IV",
+        "description": "Detalle de endpoints de USUARIO habilitados",
+        "version": "1.0.0"
+    },
+
+    "paths": {
+        "/api/users": {
+            "get": {
+                "summary": "Lista todos los usuarios",
+                "responses": {
+                    "200": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/User"
+                                }
+                            }
+                        }
+                    },
+
+                    "500": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Error"
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+
+            "post": {
+                "summary": "Registra un nuevo usuario",
+                "requestBody": {
+                    "description": "Body con campos",
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/NewUser"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/User"
+                                }
+                            }
+                        }
+                    },
+
+                    "500": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Error"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+
+        "/api/users/one/{uid}": {
+            "get": {
+                "summary": "Lista un usuario por ID",
+                "parameters": [
+                    {
+                        "name": "uid",
+                        "in": "path",
+                        "description": "ID válido MongoDB",
+                        "required": "true"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/User"
+                                }
+                            }
+                        }
+                    },
+
+                    "500": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Error"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    },
+
+    "components": {
+        "schemas": {
+            "User": {
+                "type": "object",
+                
+                "properties": {
+                    "_id": { "type": "object", "description": "ID de MongoDB"},
+                    "name": { "type": "string"},
+                    "email": { "type": "string"},
+                    "pass": { "type": "string", "description": "Clave alfanumérica entre 3 y 12 caracteres" },
+                    "avatar": { "type": "file", "description": "Archivo con imagen para el avatar" }
+                },
+
+                "example": {
+                    "_id": "638b8c323f3a4b3be6dc397e",
+                    "name": "Carlos Perren",
+                    "email": "idux.net@gmail.com",
+                    "pass": "$2a$12$G4KJiLZMsSZ.DXfxZryUWuS2Tr4ZrPwU0Z4T9pPT0B7P7E1C3EUPC",
+                    "avatar": "imagen_avatar.png"
+                }
+            },
+
+            "NewUser": {
+                "type": "object",
+                
+                "properties": {
+                    "name": { "type": "string"},
+                    "email": { "type": "string"},
+                    "pass": { "type": "string", "description": "Clave alfanumérica entre 3 y 12 caracteres" },
+                    "avatar": { "type": "file", "description": "Archivo con imagen para avatar" }
+                },
+
+                "example": {
+                    "name": "Carlos Perren",
+                    "email": "idux.net@gmail.com",
+                    "pass": "abc123",
+                    "avatar": "(Archivo enviado por multipart/form-data)"
+                }
+            },
+
+            "Error": {
+                "type": "object",
+                
+                "properties": {
+                    "status": { "type": "string"},
+                    "data": { "type": "string"}
+                },
+
+                "example": {
+                    "status": "ERR",
+                    "data": "Error interno del servidor"
+                }
+            }
+        }
+    }
+}

@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Cuccinare - Productos</title>
+  </head>
+
+  <style>
+    .hidden {
+      display: none;
+    }
+
+    .visible {
+      display: block;
+    }
+  </style>
+  <body>
+    <header>
+      <!-- Encabezado similar al que tenemos en tu página principal -->
+    </header>
+
+    <main>
+      <h1>Nuestros Productos de Cocina</h1>
+      <div id="productos">
+        <!-- Producto 1 -->
+        <div class="product">
+          <img
+            src="https://lecasaprofesional.com/wp-content/uploads/2021/08/web_41002730l_01-1.jpg"
+            alt="Guantes anti cortes"
+            style="width: 300px"
+          />
+          <h2>Guantes anti cortes</h2>
+          <p>
+            Los guantes anti cortes son perfectos para mantener tus manos
+            seguras al cortar ingredientes en la cocina.
+          </p>
+          <span class="price">$14.99</span>
+          <button class="add-to-cart">Añadir al Carrito</button>
+        </div>
+
+        <!-- Producto 2 -->
+        <div class="product">
+          <img
+            src="https://http2.mlstatic.com/D_NQ_NP_2X_620766-MLA46490127718_062021-F.webp"
+            alt="Cortador de papas"
+            style="width: 300px"
+          />
+          <h2>Cortador de papas</h2>
+          <p>
+            Este cortador de papas te ayudará a obtener rodajas perfectas y
+            uniformes de papas para tus comidas.
+          </p>
+          <span class="price">$19.99</span>
+          <button class="add-to-cart">Añadir al Carrito</button>
+        </div>
+
+        <!-- Producto 3 -->
+        <div class="product">
+          <img
+            src="https://images.fravega.com/f300/bfacf64766263d43bb06e6ebcaf498b8.jpg.webp"
+            alt="Abrelatas"
+            style="width: 300px"
+          />
+          <h2>Abrelatas</h2>
+          <p>
+            Este abrelatas de alta calidad te permite abrir latas de manera
+            fácil y rápida.
+          </p>
+          <span class="price">$9.99</span>
+          <button class="add-to-cart">Añadir al Carrito</button>
+        </div>
+
+        <!-- Producto 4 -->
+        <div class="product">
+          <img
+            src="https://media.revistaad.es/photos/637b30901f22cbb2f17f181c/master/w_1600,c_limit/7171EvuIDFL._AC_SL1500_.jpg"
+            alt="Tijera de hierbas"
+            style="width: 300px"
+          />
+          <h2>Tijera de hierbas</h2>
+          <p>
+            Esta tijera de hierbas es perfecta para picar finamente hierbas
+            frescas para tus platos favoritos.
+          </p>
+          <span class="price">$12.99</span>
+          <button class="add-to-cart">Añadir al Carrito</button>
+        </div>
+
+        <!-- Producto 5 -->
+        <div class="product">
+          <img
+            src="https://lavozdelmuro.net/wp-content/uploads/2015/01/17_gadgets_creativos_cocina_1-1.jpg"
+            alt="Cucharón para caldos y sopas del monstruo del Lago Nahuel Huapi"
+            style="width: 300px"
+          />
+          <h2>Cucharón para caldos y sopas</h2>
+          <p>
+            Este cucharón es perfecto para servir deliciosos caldos y sopas como
+            el monstruo del Lago Nahuel Huapi.
+          </p>
+          <span class="price">$8.99</span>
+          <button class="add-to-cart">Añadir al Carrito</button>
+        </div>
+
+        <!-- Botón "Ver Más" para cargar productos adicionales -->
+        <button id="ver-mas" style="margin-top: 1em">Ver más productos</button>
+
+        <!-- Producto 6 -->
+        <div class="product" style="margin-top: 5em;">
+          <img
+            src="https://media.revistaad.es/photos/637b302c5760daf31075ca10/master/w_1600,c_limit/1366_2000.jpeg"
+            alt="Envasadora al vacío"
+            style="width: 300px"
+          />
+          <h2>Envasadora al vacío</h2>
+          <p>
+            Esta envasadora al vacío te permite conservar tus alimentos frescos
+            por más tiempo.
+          </p>
+          <span class="price">$34.99</span>
+          <button class="add-to-cart">Añadir al Carrito</button>
+        </div>
+
+        <!-- Producto 7 -->
+        <div class="product">
+          <img
+            src="https://media.revistaad.es/photos/637b32db8b774040c55f8853/master/w_1600,c_limit/6134wZZ8n+L._AC_SL1000_.jpg"
+            alt="Sartén parrilla 3 en 1"
+            style="width: 300px"
+          />
+          <h2>Sartén parrilla 3 en 1</h2>
+          <p>
+            Esta sartén parrilla 3 en 1 es perfecta para cocinar carnes a la
+            parrilla y otros platos deliciosos.
+          </p>
+          <span class="price">$29.99</span>
+          <button class="add-to-cart">Añadir al Carrito</button>
+        </div>
+
+        <!-- Producto 8 -->
+        <div class="product">
+          <img
+            src="https://lh4.googleusercontent.com/any22HUCQEp4pPORWX5KYz-29mvYmK5pIQUVduW3OOdlTRv58d3OpLZ5hP3U6FI5j6Bkxgnf3tjVTDMp67QRBsaqpvH9UuiT-fcsuKvgZWJIluB3gb4IXM4J4XzswhoM5_1O3vIBquWN5DiI_w"
+            alt="Dispensador de aceite"
+            style="width: 300px"
+          />
+          <h2>Dispensador de aceite</h2>
+          <p>
+            Este dispensador de aceite te permite controlar fácilmente la
+            cantidad de aceite en tus comidas.
+          </p>
+          <span class="price">$14.99</span>
+          <button class="add-to-cart">Añadir al Carrito</button>
+        </div>
+
+        <!-- Producto 9 -->
+        <div class="product">
+          <img
+            src="https://lh4.googleusercontent.com/z1HQJdrWhjbLXWJfuakKSLhM_Zsl_lUeBYSVkGP3grxdwFgV5gUy1DmhQz9T5DB6cC84F0U6UmwO0rLbrHSN7RrozV7yeVtgx5QysrI18DgZB6F-Uye2MnhM1y_o96Q3G7GGVXnKRefwqk6KLw"
+            alt="Organizador de fregadero"
+            style="width: 300px"
+          />
+          <h2>Organizador de fregadero</h2>
+          <p>
+            Este organizador de fregadero te ayuda a mantener tu cocina ordenada
+            y tus utensilios al alcance.
+          </p>
+          <span class="price">$9.99</span>
+          <button class="add-to-cart">Añadir al Carrito</button>
+        </div>
+
+        <!-- Producto 10 -->
+        <div class="product">
+          <img
+            src="https://lh3.googleusercontent.com/4zAqLthaPlIYZuSRMZr_2U7PFKt8IYxBFZR2g3lv02q0VNbDDlhu3tiBm0_YpdI34Spsd5RESc1Ikbb8aMfHoSLFL1aoIEeQmyyLOCjaBp65mgNYzEmnXVVh_71JJhJHGqf6VYgboHd7Lrkvtw"
+            alt="Afilador de cuchillos y tijeras"
+            style="width: 300px"
+          />
+          <h2>Afilador de cuchillos y tijeras</h2>
+          <p>
+            Este afilador esencial mantendrá tus cuchillos y tijeras afilados y
+            listos para cualquier tarea de cocina.
+          </p>
+          <span class="price">$11.99</span>
+          <button class="add-to-cart">Añadir al Carrito</button>
+        </div>
+      </div>
+    </main>
+
+    <footer>
+      <!-- Pie de página principal -->
+    </footer>
+
+    <script>
+      /* const boton = document.getElementById('ver-mas');
+        // Selecciona la capa de productos
+        const capaProductos = document.querySelector('#productos');
+        // Recupera la colección de elementos hijos dentro de la capa
+        const listaProductos = capaProductos.children;
+        // Calcula el total
+        const totalProductos = listaProductos.length;
+        // Calcula la mitad redondeada
+        let productosVisibles = Math.floor(totalProductos / 2);
+        
+        function controlarLista() {
+            // Recorre la colección quitando la clase hidden en todos, y luego agregándola solo
+            // a los que corresponda según productosVisibles
+            for (let i = 0; i < totalProductos; i++) {
+                listaProductos[i].classList.remove('hidden');
+                if (i >= productosVisibles) listaProductos[i].classList.add('hidden');
+            }
+        }
+
+        // Cuando se hace click en el botón
+        boton.addEventListener('click', function () {
+            // Alterna el valor de productosVisibles y el texto
+            if (productosVisibles < totalProductos) {
+                productosVisibles = totalProductos + 1;
+                boton.innerHTML = 'Ver menos productos';
+            } else {
+                productosVisibles = Math.floor(totalProductos / 2);
+                boton.innerHTML = 'Ver más productos';
+            }
+
+            // Vuelve a llamar a la función para refrescar la lista
+            controlarLista();
+        })
+
+        controlarLista(); */
+
+      document.addEventListener("DOMContentLoaded", function () {
+        const verMasButton = document.getElementById("ver-mas");
+        const productContainer = document.querySelector(".product-list");
+        let lastVisibleProductIndex = 4; // Índice del último producto visible (0-4 al principio)
+        
+        // Función para mostrar los siguientes productos
+        function mostrarSiguientesProductos() {
+          const hiddenProducts = document.querySelectorAll(".product.hidden-product");
+          for (let i = lastVisibleProductIndex + 1; i <= lastVisibleProductIndex + 5; i++) {
+            const product = hiddenProducts[i];
+            if (product) {
+              product.classList.remove("hidden-product");
+              lastVisibleProductIndex = i;
+            } else {
+              break;
+            }
+          }
+          // Si no quedan más productos ocultos, oculta el botón "Ver Más"
+          if (lastVisibleProductIndex >= hiddenProducts.length - 1) {
+            // verMasButton.style.display = "none";
+          }
+        }
+        // Agrega un controlador de eventos al botón "Ver Más"
+        verMasButton.addEventListener("click", function () {
+          mostrarSiguientesProductos();
+        });
+        // Muestra los primeros 5 productos
+        mostrarSiguientesProductos();
+      });
+    </script>
+  </body>
+</html>

@@ -7,6 +7,6 @@ export const mainRoutes = () => {
     // Inyectamos el uploader como middleware, se encargará de subir el archivo
     // La cadena continuará luego hacia mainController.uploadContent para procesar el resto del body
     // ATENCION!: configurar el enctype del formulario de envío como multipart/form-data
-    router.post('/upload', uploader.single('imagen'), mainController.uploadContent);
+    router.post('/upload', uploader.single('avatar'), mainController.uploadContent);
     return router;
 }
