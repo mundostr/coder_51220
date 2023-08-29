@@ -1,38 +1,41 @@
-## PRACTICA INTEGRADORA 3
+## PRACTICA INTEGRADORA 4
 
 ### En este ejercicio nos enfocamos en:
 
-1. Comprender el manejo de la arquitectura por capas.
-2. Aislar la responsabilidad de las rutas.
-3. Aislar la responsabilidad de los controladores.
-4. Aislar la responsabilidad de los servicios.
-5. Entender la responsabilidad de la persistencia.
-6. Aplicar clases DAO para MongoDB y MySQL, junto a un objeto DTO.
-7. Aplicar clases singleton para conexión a bbdd.
-8. Aplicar patrón general Repository y ver la opción de Factory.
-9. Utilizar variables de entorno y configuraciones de línea de comandos para cambiar entre DEVEL y PROD.
-10. Aplicar autenticación de usuarios con passport local y autorización vía roles.
-11. Activación de clase para manejo personalizado de errores, con diccionario.
+1. Agregar soporte para logging (Winston).
+2. Agregar soporte para documentación (Swagger).
+3. Agregar pruebas unitarias y alguna de integración.
+4. Agregar alternativa para subida de archivos (Multer / express-fileupload).
+5. Agregar validación de body (express-validator).
 
-### Módulos a instalar:
-- bcrypt commander cors dotenv express express-handlebars express-session mongoose multer mysql2 passport passport-local.
 
-### Otras integraciones para sumar:
-- Sesiones en bbdd: connect-mongo.
-- Trabajo con JWT: cookie-parser jsonwebtoken passport-jwt.
-- Paginación resultados de Mongoose: mongoose-paginate-v2.
+### Dependencias
+```bash
+$ express-fileupload express-validator swagger-jsdoc swagger-ui-express winston
+$ npm i chai mocha supertest --save-dev
+```
 
-### Estructura de carpetas:
-- auth.
-- controllers.
-- models.
-- routes.
-- services.
-- utils.
-- views.
 
-### Archivos base:
-- app.js (app principal).
-- config.js (configuración variables de entorno y línea de comandos).
-- .env.development (variables de entorno para desarrollo).
-- .env.production (variables de entorno para producción).
+### Ejemplo variables de entorno development (archivo .env.development en raíz del proyecto)
+```bash
+SERVER_PORT=3000
+MONGOOSE_URL="mongodb://127.0.0.1:27017/coder51220"
+MYSQL_URL="mysql_server"
+MYSQL_DB="mysql_database"
+MYSQL_USER="mysql_user"
+MYSQL_PASS="mysql_pass"
+SECRET="abcdefgh12345678"
+PERSISTENCE="mongo"
+ALLOWED_ORIGINS="*"
+UPLOAD_DIR="uploads"
+DEFAULT_LOG_LEVEL="debug"
+```
+
+
+### Enlaces de referencia
+- Logging: [Winston](https://github.com/winstonjs/winston)
+- Documentación: [Swagger](https://swagger.io/docs/)
+- Pruebas unitarias, aserciones: [Chai](https://www.chaijs.com/api/bdd/)
+- Subida de archivos: [Multer](https://www.npmjs.com/package/multer)
+- Subida de archivos: [Express File Upload](https://www.npmjs.com/package/express-fileupload)
+- Validación: [Express Validator](https://www.npmjs.com/package/express-validator)
