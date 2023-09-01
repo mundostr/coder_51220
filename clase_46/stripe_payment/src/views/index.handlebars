@@ -1,0 +1,74 @@
+<style>
+</style>
+
+<section style="margin-bottom: 1em;">
+    <div class="row">
+        {{#each products}}
+            <div class="card" style="width: 260px; padding: 0; margin: 1em;">
+                <img src="{{this.thumbnail}}" class="card-img-top" alt="Thumbnail" style="width: 100%;">
+                <div class="card-body">
+                    <h5 class="card-title">{{this.title}}</h5>
+                    <p class="card-text" style="text-align: right; font-size: 200%; font-weight: bold;">USD {{this.price}}</p>
+                </div>
+                <div class="card-footer" style="text-align: right;">
+                    <a class="btn btn-warning" onclick="addtoCart('{{this.title}}', {{this.price}})">Agregar</a>
+                </div>
+            </div>
+        {{/each}}
+    </div>
+</section>
+
+<section style="margin-bottom: 1em;">
+    <div class="row m-2">
+        <button id="checkoutBtn" class="btn btn-warning"><b>Comprar!</b></button>
+    </div>
+</section>
+
+<div id="alert" class="alert alert-success" role="alert" style="position: fixed; top: 1.5em; right: 1.5em; z-index: 1000; display: none;">
+    Msg
+</div>
+
+<script>
+    const cart = []
+    const alert = document.getElementById('alert')
+    const checkoutBtn = document.getElementById('checkoutBtn')
+
+    const notify = (msg) => {
+        alert.innerHTML = msg
+        alert.style.display = 'block'
+        setTimeout(() => alert.style.display = 'none', 2000)
+    }
+
+    const addtoCart = (title, price) => {
+        const newProduct = {
+            price_data: {
+                product_data: {
+                    name: title
+                },
+                currency: 'usd',
+                unit_amount: price * 100, // * 100 pq opera en centavos
+            },
+            quantity: 1
+        }
+
+        cart.push(newProduct)
+        notify('El producto ha sido agregado')
+    }
+
+    checkoutBtn.addEventListener("click", async (e) => {
+        e.preventDefault()
+
+        if (cart.length > 0) {
+            const data = await fetch('/api/cart/checkout', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(cart)
+            })
+            const jsonData = await data.json()
+            
+            window.location.href = jsonData.url
+        } else {
+            notify('El carrito está vacío, nada para procesar')
+        }
+    })
+</script>
