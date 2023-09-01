@@ -8,10 +8,14 @@ const app = express();
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+// Recordar que se puede utilizar fácilmente el middleware express.static,
+// para servir contenidos estáticos (archivos HTML, CSS, etc) desde una determinada carpeta
 app.use(express.static(`${config.APP_PATH}/static`));
 
 app.engine('handlebars', engine());
 app.set('view engine', 'handlebars');
+// Ver como estamos utilizando config.APP_PATH (generado en base a path.resolve())
+// en lugar de la macro __dirname que solíamos aplicar.
 app.set('views', `${config.APP_PATH}/views`);
 
 app.use('/api/cart', cartRoutes());
