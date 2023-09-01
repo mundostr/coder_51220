@@ -29,16 +29,27 @@
 </div>
 
 <script>
+    // Creamos un carrito vacío en memoria.
+    // Para el proyecto final, enlazar con un carrito que cuente con alguna persistencia (session, etc).
     const cart = []
+
+    // Creamos un par de variables para hacer referencia a elementos del DOM (entorno gráfico de la página)
+    // Si se observa el HTML más arriba, se verá un id alert y un id checkoutBtn.
     const alert = document.getElementById('alert')
     const checkoutBtn = document.getElementById('checkoutBtn')
 
+    // Carga el mensaje en el cuadro de alerta y lo muestra, ya que normalmente está oculto
     const notify = (msg) => {
         alert.innerHTML = msg
         alert.style.display = 'block'
+        
+        // Luego de 2 segs, lo oculta
         setTimeout(() => alert.style.display = 'none', 2000)
     }
 
+    // Este método se ejecuta en los botones Agregar de los productos
+    // Se arma un nuevo objeto de producto y se lo agrega al array cart.
+    // El formato utilizado (price_data, product_data, currency, etc), es requerido por Stripe
     const addtoCart = (title, price) => {
         const newProduct = {
             price_data: {
@@ -55,10 +66,15 @@
         notify('El producto ha sido agregado')
     }
 
+    // Agregamos escucha para el evento click del botón Comprar.
+    // Puede generarse una función y llamarla utilizando el atributo onclick arriba en el HTML,
+    // o bien hacerlo de esta manera, es equivalente
     checkoutBtn.addEventListener("click", async (e) => {
         e.preventDefault()
 
         if (cart.length > 0) {
+            // Llamamos al endpoint checkout con una solicitud POST, y le enviamos como body el carrito (cart)
+            // El endpoint contactará con Sprite y le pasará los datos para que arme el pago.
             const data = await fetch('/api/cart/checkout', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
@@ -66,6 +82,8 @@
             })
             const jsonData = await data.json()
             
+            // Al completar el proceso, Sprite devolverá una URL en la cual podremos acceder al pago armado
+            // Simplemente redireccionamos a esa URL para que el cliente complete el pago.
             window.location.href = jsonData.url
         } else {
             notify('El carrito está vacío, nada para procesar')
